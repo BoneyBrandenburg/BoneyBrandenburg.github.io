@@ -1,13 +1,13 @@
 ---
 permalink: /
-title: "Ruiyang Gao - Ph.D. Student at Peking University"
+title: "Ruiyang Gao - Ph.D. at Peking University"
 author_profile: true
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-Welcome! I am **Ruiyang Gao**, a Ph.D. student in Computer Science at [Peking University](https://www.pku.edu.cn/), advised by [Prof. Daqing Zhang](https://www.cs.cmu.edu/~daqingz/) (IEEE Fellow).
+Welcome! I am **Ruiyang Gao**, a Ph.D. in Computer Science at [Peking University](https://www.pku.edu.cn/), advised by [Prof. Daqing Zhang](https://www.cs.cmu.edu/~daqingz/) (IEEE Fellow).
 
 ## Research Interests
 
@@ -20,7 +20,7 @@ My research focuses on:
 
 ## About Me
 
-I am currently pursuing my Ph.D. at the School of Computer Science, Peking University. My research explores the intersection of mobile computing, wireless sensing, and human-computer interaction. I have published multiple papers at top-tier venues including ACM UbiComp, IMWUT, and ACM SenSys, focusing on innovative sensing techniques using commercial WiFi devices.
+I received my Ph.D. from the School of Computer Science, Peking University. My research explores the intersection of mobile computing, wireless sensing, and human-computer interaction. I have published multiple papers at top-tier venues including ACM UbiComp, IMWUT, and ACM SenSys, focusing on innovative sensing techniques using commercial WiFi devices.
 
 ## Contact
 
