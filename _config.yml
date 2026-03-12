@@ -1,257 +1,44 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve -l -H localhost`. If you change this file, please restart the
-# server process.
-
-# Basic Site Settings
-locale : "en-US"
-site_theme : "default"
-title : "Ruiyang Gao | 高睿杨"
-title_separator : "-"
-name : &name "Ruiyang Gao"
-description : &description "Ph.D. in Computer Science at Peking University, focusing on Ubiquitous Computing and Wireless Sensing"
-url : https://BoneyBrandenburg.github.io
-baseurl : ""
-repository : "BoneyBrandenburg/BoneyBrandenburg.github.io"
-
-# Site Author
+# Site settings
+title: "Ruiyang Gao | 高睿杨"
+description: "Ph.D. in Computer Science at Peking University, focusing on Ubiquitous Computing and Wireless Sensing"
 author:
-  avatar : "profile.png"
-  name : "Ruiyang Gao"
-  bio : "Ph.D. in Computer Science at Peking University, focusing on Ubiquitous Computing and Wireless Sensing"
-  location : "Beijing, China"
-  employer : "Peking University"
-  email : "railgun@gaoruiyang.cn"
-  googlescholar : "https://scholar.google.com/citations?user=3utn_nYAAAAJ"
-  orcid : 
-  github : 
-  linkedin : 
+  name: "Ruiyang Gao"
+  email: "railgun@gaoruiyang.cn"
+  github: ""
+  scholar: "https://scholar.google.com/citations?user=3utn_nYAAAAJ"
+baseurl: ""
+url: "https://BoneyBrandenburg.github.io"
 
-# Publication Category
-publication_category:
-  books:
-    title: 'Books'
-  manuscripts:
-    title: 'Journal Articles'
-  conferences:
-    title: 'Conference Papers'
-
-# Site Settings
-teaser :
-breadcrumbs : false
-words_per_minute : 160
-future : true
-read_more : "disabled"
-talkmap_link : false
-comments:
-  provider :
-staticman:
-  allowedFields : ['name', 'email', 'url', 'message']
-  branch : "gh-pages"
-  commitMessage : "New comment."
-  filename : comment-{@timestamp}
-  format : "yml"
-  moderation : true
-  path : "_data/comments/{options.slug}"
-  requiredFields : ['name', 'email', 'message']
-  transforms:
-    email : "md5"
-  generatedFields:
-    date:
-      type : "date"
-      options:
-        format : "iso8601"
-atom_feed:
-  hide : false
-  path :
-
-# SEO Related
-google_site_verification :
-bing_site_verification :
-alexa_site_verification :
-yandex_site_verification :
-
-# Social Sharing
-twitter:
-  username : &twitter
-facebook:
-  username :
-  app_id :
-  publisher :
-og_image :
-og_description :
-social:
-  type :
-  name :
-  links:
-
-# Analytics
-analytics:
-  provider : "false"
-  google:
-    tracking_id :
-
-# Reading Files
-include:
-  - .htaccess
-  - _pages
-  - files
-exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - .asset-cache
-  - .bundle
-  - .github
-  - .jekyll-assets-cache
-  - .sass-cache
-  - assets/js/_main.js
-  - assets/js/plugins
-  - assets/js/vendor
-  - CHANGELOG
-  - Capfile
-  - config
-  - Dockerfile
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - local
-  - log
-  - node_modules
-  - package.json*
-  - Rakefile
-  - README
-  - tmp
-  - vendor
-keep_files:
-  - .git
-  - .svn
-encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
-
-# Conversion
+# Build settings
 markdown: kramdown
 highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
-
-# Markdown Processing
-kramdown:
-  input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-
-# Collections
-collections:
-  teaching:
-    output: true
-    permalink: /:collection/:path/
-  publications:
-    output: true
-    permalink: /:collection/:path/
-  portfolio:
-    output: true
-    permalink: /:collection/:path/
-  talks:
-    output: true
-    permalink: /:collection/:path/
-
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: single
-      author_profile: true
-      read_time: true
-      comments: true
-      share: true
-      related: true
-  - scope:
-      path: ""
-      type: pages
-    values:
-      layout: single
-      author_profile: true
-  - scope:
-      path: ""
-      type: teaching
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
-  - scope:
-      path: ""
-      type: publications
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comments: true
-  - scope:
-      path: ""
-      type: portfolio
-    values:
-      layout: single
-      author_profile: true
-      share: true
-      comment: true
-  - scope:
-      path: ""
-      type: talks
-    values:
-      layout: talk
-      author_profile: true
-      share: true
-
-# Sass/SCSS
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Outputting
-permalink: /:categories/:title/
-timezone: Etc/UTC
-
-# Plugins
+theme: minima
 plugins:
   - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jemoji
+  - jekyll-seo-tag
 
-# Mimic GitHub Pages with --safe
-whitelist:
-  - jekyll-feed
-  - jekyll-gist
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-redirect-from
-  - jemoji
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
 
-# Archives
-category_archive:
-  type: liquid
-  path: /categories/
-tag_archive:
-  type: liquid
-  path: /tags/
-
-# HTML Compression
-compress_html:
-  clippings: all
-  ignore:
-    envs: development
+# Custom variables
+profile_image: /assets/images/profile.jpg
+institution: "Peking University"
+position: "Ph.D."
+research_interests:
+  - "Ubiquitous Computing"
+  - "Context Sensing"
+  - "Wireless Sensing"
+stats:
+  citations: 1554
+  h_index: 11
+  i10_index: 13
