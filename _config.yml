@@ -23,7 +23,7 @@ repository               : "BoneyBrandenburg/BoneyBrandenburg.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "profile.jpg"
+  avatar           : "images/profile.jpg"
   name             : "Ruiyang Gao"
   pronouns         : # example: "she/her"  
   bio              : "Ph.D. in Computer Science at Peking University, advised by Prof. Daqing Zhang (IEEE Fellow)."
