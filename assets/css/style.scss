@@ -1,0 +1,482 @@
+---
+---
+
+// Import base styles from minima
+@import "minima";
+
+// Custom variables
+$primary-color: #1a5276;
+$secondary-color: #2c3e50;
+$accent-color: #e67e22;
+$text-color: #2c3e50;
+$text-light: #5d6d7e;
+$bg-color: #ffffff;
+$bg-alt: #f8f9fa;
+$border-color: #e5e8e8;
+
+// Base styles
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: $text-color;
+  line-height: 1.6;
+  background-color: $bg-color;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  
+  &:hover {
+    color: darken($primary-color, 10%);
+    text-decoration: underline;
+  }
+}
+
+// Header
+.site-header {
+  border-bottom: 1px solid $border-color;
+  background-color: $bg-color;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+.site-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+.site-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: $text-color;
+  
+  &:hover {
+    text-decoration: none;
+    color: $primary-color;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  
+  a {
+    color: $text-light;
+    font-weight: 500;
+    transition: color 0.2s;
+    
+    &:hover {
+      color: $primary-color;
+      text-decoration: none;
+    }
+  }
+}
+
+// Hero Section
+.hero {
+  padding: 60px 0;
+  background-color: $bg-color;
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.profile-section {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.profile-image {
+  .profile-photo {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid $border-color;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  }
+}
+
+.profile-info {
+  .name {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem 0;
+    color: $text-color;
+  }
+  
+  .name-cn {
+    font-size: 1.25rem;
+    color: $text-light;
+    margin: 0 0 0.5rem 0;
+  }
+  
+  .position {
+    font-size: 1.1rem;
+    color: $primary-color;
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .email {
+    margin: 0 0 1rem 0;
+    font-size: 0.95rem;
+  }
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: $bg-alt;
+  border-radius: 6px;
+  color: $text-color;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    text-decoration: none;
+  }
+  
+  &.reserved {
+    opacity: 0.6;
+    cursor: default;
+    
+    &:hover {
+      background-color: $bg-alt;
+      color: $text-color;
+    }
+  }
+  
+  .icon {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+  }
+}
+
+// Research Section
+.research-section {
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: $text-color;
+  }
+}
+
+.research-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.tag {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  background-color: lighten($primary-color, 55%);
+  color: $primary-color;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.bio {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: $text-light;
+  max-width: 800px;
+}
+
+// Stats Section
+.stats-section {
+  background-color: $primary-color;
+  padding: 40px 0;
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  text-align: center;
+}
+
+.stat-item {
+  color: white;
+}
+
+.stat-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+// Publications Section
+.publications {
+  padding: 60px 0;
+  background-color: $bg-alt;
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: $text-color;
+  }
+}
+
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.pub-card {
+  background-color: $bg-color;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: box-shadow 0.2s;
+  
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  }
+}
+
+.pub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.pub-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: $text-color;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.pub-citations {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: lighten($accent-color, 40%);
+  color: darken($accent-color, 10%);
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.pub-authors {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.95rem;
+  color: $text-light;
+}
+
+.pub-venue {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: $text-light;
+  font-style: italic;
+}
+
+.pub-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pub-year {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background-color: $bg-alt;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: $text-light;
+}
+
+.pub-links {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.pub-link {
+  padding: 0.35rem 0.75rem;
+  border: 1px solid $border-color;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    border-color: $primary-color;
+    text-decoration: none;
+  }
+}
+
+.view-all {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid $border-color;
+}
+
+.btn-secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  border: 2px solid $primary-color;
+  color: $primary-color;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.2s;
+  
+  &:hover {
+    background-color: $primary-color;
+    color: white;
+    text-decoration: none;
+  }
+}
+
+// Contact Section
+.contact {
+  padding: 60px 0;
+  background-color: $bg-color;
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  h2 {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: $text-color;
+  }
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.contact-item {
+  font-size: 1rem;
+  
+  strong {
+    display: inline-block;
+    width: 140px;
+    color: $text-color;
+  }
+}
+
+// Footer
+.site-footer {
+  background-color: $bg-alt;
+  border-top: 1px solid $border-color;
+  padding: 2rem 0;
+  text-align: center;
+  
+  .wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  p {
+    margin: 0;
+    color: $text-light;
+    font-size: 0.9rem;
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .profile-section {
+    grid-template-columns: 1fr;
+    text-align: center;
+    
+    .profile-image {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  
+  .social-links {
+    justify-content: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .pub-header {
+    flex-direction: column;
+  }
+  
+  .nav-links {
+    gap: 1rem;
+  }
+}

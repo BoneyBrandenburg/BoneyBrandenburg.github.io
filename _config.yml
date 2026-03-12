@@ -1,0 +1,44 @@
+# Site settings
+title: "Ruiyang Gao | 高睿杨"
+description: "Ph.D. in Computer Science at Peking University, focusing on Ubiquitous Computing and Wireless Sensing"
+author:
+  name: "Ruiyang Gao"
+  email: "railgun@gaoruiyang.cn"
+  github: ""
+  scholar: "https://scholar.google.com/citations?user=3utn_nYAAAAJ"
+baseurl: ""
+url: "https://BoneyBrandenburg.github.io"
+
+# Build settings
+markdown: kramdown
+highlighter: rouge
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Exclude from processing
+exclude:
+  - .sass-cache/
+  - .jekyll-cache/
+  - gemfiles/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+
+# Custom variables
+profile_image: /assets/images/profile.jpg
+institution: "Peking University"
+position: "Ph.D."
+research_interests:
+  - "Ubiquitous Computing"
+  - "Context Sensing"
+  - "Wireless Sensing"
+stats:
+  citations: 1554
+  h_index: 11
+  i10_index: 13
