@@ -1,33 +1,33 @@
 /* ==========================================================================
-    DEFAULT THEME - DARK VERSION
+    DEFAULT THEME - DARK VERSION (Deep Space Tech)
     ========================================================================== */
 
 /* Color codes used for the theme */
-$primary-color              : #0ea1c5;
-$gray                       : #7a8288;
+$primary-color              : #00d4ff;
+$gray                       : #4a5568;
 $dark-gray                  : mix(#000, $gray, 40%);
 $darker-gray                : mix(#000, $gray, 60%);
 $light-gray                 : mix(#fff, $gray, 50%);
 
-$background                 : #474747;
-$background-light           : mix(#fff, $background, 80%);
-$background-lighter         : mix(#fff, $background, 90%);
-$text                       : #ffffff;
-$link                       : #0ea1c5;
+$background                 : #0a0e1a;
+$background-light           : #111827;
+$background-lighter         : #1a2235;
+$text                       : #e2eeff;
+$link                       : #00d4ff;
 $link-dark                  : mix(#000, $link, 25%);
 $link-light                 : mix(#fff, $link, 25%);
 
 /* Color codes used for the site */
-$danger-color               : #ee5f5b;
-$info-color                 : #2f7f93;
+$danger-color               : #ff5b6b;
+$info-color                 : #00d4ff;
 $notice-color               : #7a8288;
-$success-color              : #62c462;
-$warning-color              : #f89406;
+$success-color              : #00e896;
+$warning-color              : #ffb020;
 
 /* Other basic settings for the template */
-$border-radius              : 4px;
-$box-shadow                 : 0 1px 1px rgba(0, 0, 0, 0.125);
-$global-transition          : all 0.2s ease-in-out;
+$border-radius              : 6px;
+$box-shadow                 : 0 4px 24px rgba(0, 212, 255, 0.1);
+$global-transition          : all 0.25s ease-in-out;
 $masthead-height            : 70px;
 $navicon-width              : 28px;
 $navicon-height             : 4px;
@@ -38,11 +38,11 @@ $sidebar-screen-min-width   : 1024px;
 html[data-theme="dark"] {
     --global-base-color                 : #{$primary-color};
     --global-bg-color                   : #{$background};
-    --global-footer-bg-color            : #{$background};
-    --global-border-color               : #{$light-gray};
-    --global-dark-border-color          : #{$background-light};
-    --global-code-background-color      : #fafafa;
-    --global-code-text-color            : #{$darker-gray};
+    --global-footer-bg-color            : #{$background-light};
+    --global-border-color               : rgba(0, 212, 255, 0.15);
+    --global-dark-border-color          : rgba(0, 212, 255, 0.25);
+    --global-code-background-color      : #0d1117;
+    --global-code-text-color            : #79c0ff;
     --global-fig-caption-color          : #{$light-gray};
     --global-link-color                 : #{$link};
     --global-link-color-hover           : #{$link-dark};
@@ -50,7 +50,13 @@ html[data-theme="dark"] {
     --global-masthead-link-color        : #{$text};
     --global-masthead-link-color-hover  : #{$primary-color};
     --global-text-color                 : #{$text};
-    --global-text-color-light           : #f3f3f3;
+    --global-text-color-light           : #8899bb;
     --global-thead-color                : #{$background-lighter};
+    /* Tech-specific variables */
+    --global-accent-glow                : rgba(0, 212, 255, 0.4);
+    --global-card-bg                    : rgba(17, 24, 39, 0.8);
+    --global-glass-bg                   : rgba(10, 14, 26, 0.85);
+    --global-grid-color                 : rgba(0, 212, 255, 0.04);
+    --global-masthead-bg                : rgba(10, 14, 26, 0.9);
 }
 

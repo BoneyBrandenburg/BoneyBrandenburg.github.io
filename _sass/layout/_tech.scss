@@ -1,0 +1,436 @@
+/* ==========================================================================
+   TECH THEME ENHANCEMENTS
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Animated grid background for body
+   -------------------------------------------------------------------------- */
+
+body {
+  background-image:
+    linear-gradient(var(--global-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--global-grid-color) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-attachment: fixed;
+}
+
+/* --------------------------------------------------------------------------
+   Typography — tech feel
+   -------------------------------------------------------------------------- */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Space Grotesk', $sans-serif;
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  position: relative;
+  display: inline-block;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--global-base-color), transparent);
+    border-radius: 2px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Masthead — glass morphism nav
+   -------------------------------------------------------------------------- */
+
+.masthead {
+  background: var(--global-masthead-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--global-dark-border-color) !important;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+
+  &::after {
+    background: linear-gradient(90deg,
+      var(--global-base-color),
+      transparent 40%,
+      transparent 60%,
+      var(--global-base-color)) !important;
+    opacity: 0.6;
+    height: 1px;
+  }
+}
+
+.masthead__menu-item {
+  background-color: transparent !important;
+
+  a {
+    position: relative;
+    transition: color 0.2s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--global-base-color);
+      transition: width 0.25s ease;
+      border-radius: 1px;
+    }
+
+    &:hover::after {
+      width: 100%;
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Sidebar — tech card style
+   -------------------------------------------------------------------------- */
+
+.sidebar {
+  .author__avatar {
+    img {
+      border-radius: 50%;
+      border: 2px solid var(--global-base-color);
+      box-shadow: 0 0 0 4px var(--global-accent-glow),
+                  0 8px 32px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease;
+
+      &:hover {
+        box-shadow: 0 0 0 6px var(--global-accent-glow),
+                    0 12px 40px rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+
+  .author__name {
+    font-family: 'Space Grotesk', $sans-serif;
+    font-weight: 700;
+    font-size: 1.1em;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, var(--global-base-color), var(--global-text-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+
+    a {
+      color: inherit;
+      -webkit-text-fill-color: inherit;
+    }
+  }
+
+  .author__bio {
+    font-size: 0.82em;
+    line-height: 1.55;
+    opacity: 0.85;
+  }
+
+  .author__urls {
+    li {
+      a {
+        transition: color 0.2s ease, transform 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+
+        &:hover {
+          color: var(--global-base-color);
+          transform: translateX(3px);
+        }
+      }
+    }
+  }
+
+  .author__urls-wrapper {
+    .btn {
+      border: 1px solid var(--global-base-color);
+      color: var(--global-base-color);
+      background: transparent;
+      border-radius: 20px;
+      padding: 4px 16px;
+      font-size: 0.78em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background: var(--global-base-color);
+        color: white;
+        box-shadow: 0 0 12px var(--global-accent-glow);
+      }
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Page content — cards and sections
+   -------------------------------------------------------------------------- */
+
+.page__content {
+  h2 {
+    margin-top: 2.2em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+
+  ul li,
+  ol li {
+    line-height: 1.75;
+  }
+
+  strong {
+    color: var(--global-base-color);
+    font-weight: 600;
+  }
+}
+
+/* Archive / publication items */
+.archive__item {
+  background: var(--global-card-bg);
+  border: 1px solid var(--global-border-color);
+  border-radius: 8px;
+  padding: 1em 1.2em;
+  margin-bottom: 1em;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  &:hover {
+    border-color: var(--global-base-color);
+    box-shadow: 0 4px 20px var(--global-accent-glow);
+    transform: translateY(-2px);
+  }
+
+  &-title {
+    font-family: 'Space Grotesk', $sans-serif;
+    font-size: 1em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+
+    a {
+      transition: color 0.2s ease;
+      &:hover {
+        color: var(--global-base-color);
+      }
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Code blocks — terminal style
+   -------------------------------------------------------------------------- */
+
+code, pre {
+  font-family: 'JetBrains Mono', 'Fira Code', Monaco, Consolas, monospace !important;
+  font-size: 0.88em;
+}
+
+pre {
+  background: var(--global-code-background-color) !important;
+  border: 1px solid var(--global-border-color);
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    height: 26px;
+    background: rgba(0, 0, 0, 0.25);
+    margin: -1em -1em 0.8em;
+    border-bottom: 1px solid var(--global-border-color);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Footer
+   -------------------------------------------------------------------------- */
+
+.page__footer {
+  border-top: 1px solid var(--global-dark-border-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+
+  footer {
+    font-size: 0.82em;
+    opacity: 0.8;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+
+table {
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--global-border-color);
+
+  thead th {
+    background: var(--global-thead-color);
+    font-family: 'Space Grotesk', $sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 0.78em;
+  }
+
+  tbody tr {
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: var(--global-accent-glow);
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Homepage hero intro block
+   -------------------------------------------------------------------------- */
+
+.hero-intro {
+  margin-bottom: 1.8em;
+  padding: 1.6em 1.8em;
+  background: var(--global-card-bg);
+  border: 1px solid var(--global-border-color);
+  border-left: 3px solid var(--global-base-color);
+  border-radius: 0 8px 8px 0;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  .hero-greeting {
+    display: block;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--global-base-color);
+    margin-bottom: 0.3em;
+    font-weight: 500;
+  }
+
+  .hero-name {
+    font-family: 'Space Grotesk', $sans-serif;
+    font-size: 2em;
+    font-weight: 700;
+    margin: 0 0 0.2em;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--global-text-color);
+  }
+
+  .hero-tagline {
+    font-size: 0.9em;
+    color: var(--global-text-color-light);
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Research interest grid cards
+   -------------------------------------------------------------------------- */
+
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.8em;
+  margin: 1em 0 1.5em;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.research-card {
+  background: var(--global-card-bg);
+  border: 1px solid var(--global-border-color);
+  border-radius: 8px;
+  padding: 1em 1.2em;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+
+  i {
+    font-size: 1.3em;
+    color: var(--global-base-color);
+    margin-bottom: 0.5em;
+    display: block;
+    opacity: 0.9;
+  }
+
+  h4 {
+    margin: 0 0 0.4em;
+    font-size: 0.9em;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.82em;
+    line-height: 1.55;
+    color: var(--global-text-color-light);
+  }
+
+  &:hover {
+    border-color: var(--global-base-color);
+    box-shadow: 0 4px 16px var(--global-accent-glow);
+    transform: translateY(-2px);
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Smooth focus ring
+   -------------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--global-base-color);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Scroll bar (webkit)
+   -------------------------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--global-base-color);
+  opacity: 0.5;
+  border-radius: 3px;
+}
+
+/* --------------------------------------------------------------------------
+   Page entrance animations
+   -------------------------------------------------------------------------- */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.page__content {
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.1s;
+}
+
+.sidebar.sticky {
+  animation: fadeInUp 0.4s ease both;
+  animation-delay: 0.05s;
+}
