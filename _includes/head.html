@@ -12,6 +12,16 @@
   document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
 </script>
 
+<script>
+  (function() {
+    var palette = '1';
+    try {
+      palette = localStorage.getItem('site-palette') || '1';
+    } catch (e) {}
+    document.documentElement.setAttribute('data-palette', palette);
+  })();
+</script>
+
 <!-- Google Fonts: Space Grotesk + JetBrains Mono -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
