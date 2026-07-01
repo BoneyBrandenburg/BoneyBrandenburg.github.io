@@ -44,50 +44,52 @@ layout: compress
         var trigger = document.getElementById('palette-trigger');
         var options = document.getElementById('palette-options');
         var buttons = Array.prototype.slice.call(document.querySelectorAll('.palette-option'));
+        var tocObserver = null;
 
         if (!trigger || !options || !buttons.length) {
           return;
         }
 
-        /* ------------------------------------------------------------------
-           Palette 5 (Amber): Build a sticky editorial TOC in the sidebar
-           ------------------------------------------------------------------ */
-        var tocObserver = null;
-
         function buildEditorialTOC() {
           var sidebar = document.querySelector('.sidebar.sticky');
+          var headings;
+          var old;
+          var nav;
+          var label;
+          var ul;
+          var currentH2Li = null;
+
           if (!sidebar) return;
 
-          // Remove any previously injected TOC
-          var old = sidebar.querySelector('.toc-editorial');
+          old = sidebar.querySelector('.toc-editorial');
           if (old) old.remove();
-          if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+          if (tocObserver) {
+            tocObserver.disconnect();
+            tocObserver = null;
+          }
 
-          var headings = Array.prototype.slice.call(
-            document.querySelectorAll('.page__content h2, .page__content h3')
-          );
+          headings = Array.prototype.slice.call(document.querySelectorAll('.page__content h2, .page__content h3'));
           if (headings.length < 2) return;
 
-          // Ensure each heading has an id
           headings.forEach(function (h, i) {
             if (!h.id) h.id = 'toc-heading-' + i;
           });
 
-          var nav = document.createElement('nav');
+          nav = document.createElement('nav');
           nav.className = 'toc-editorial';
           nav.setAttribute('aria-label', 'Page contents');
 
-          var label = document.createElement('div');
+          label = document.createElement('div');
           label.className = 'toc-editorial__label';
           label.textContent = 'Contents';
           nav.appendChild(label);
 
-          var ul = document.createElement('ul');
-          var currentH2Li = null;
+          ul = document.createElement('ul');
 
           headings.forEach(function (h) {
             var li = document.createElement('li');
             var a = document.createElement('a');
+
             a.href = '#' + h.id;
             a.textContent = h.textContent;
             a.setAttribute('data-toc-id', h.id);
@@ -113,16 +115,15 @@ layout: compress
           nav.appendChild(ul);
           sidebar.appendChild(nav);
 
-          // Smooth-scroll on click
           nav.addEventListener('click', function (e) {
             var link = e.target.closest('a[data-toc-id]');
+            var target;
             if (!link) return;
             e.preventDefault();
-            var target = document.getElementById(link.getAttribute('data-toc-id'));
+            target = document.getElementById(link.getAttribute('data-toc-id'));
             if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
           });
 
-          // Active-link tracking via IntersectionObserver
           if ('IntersectionObserver' in window) {
             tocObserver = new IntersectionObserver(function (entries) {
               entries.forEach(function (entry) {
@@ -138,7 +139,9 @@ layout: compress
               });
             }, { rootMargin: '-20% 0px -70% 0px' });
 
-            headings.forEach(function (h) { tocObserver.observe(h); });
+            headings.forEach(function (h) {
+              tocObserver.observe(h);
+            });
           }
         }
 
@@ -148,12 +151,12 @@ layout: compress
             var old = sidebar.querySelector('.toc-editorial');
             if (old) old.remove();
           }
-          if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+          if (tocObserver) {
+            tocObserver.disconnect();
+            tocObserver = null;
+          }
         }
 
-        /* ------------------------------------------------------------------
-           Core palette apply
-           ------------------------------------------------------------------ */
         function applyPalette(palette) {
           root.setAttribute('data-palette', palette);
           try {
@@ -165,7 +168,6 @@ layout: compress
             button.classList.toggle('active', active);
           });
 
-          // Layout side-effects
           if (palette === '5') {
             buildEditorialTOC();
           } else {
@@ -178,15 +180,17 @@ layout: compress
           trigger.setAttribute('aria-expanded', 'false');
         }
 
-        // Restore persisted palette (fallback to '1')
         var saved = null;
-        try { saved = localStorage.getItem('site-palette'); } catch (e) {}
-        var initial = saved || root.getAttribute('data-palette') || '1';
-        applyPalette(initial);
+        try {
+          saved = localStorage.getItem('site-palette');
+        } catch (e) {}
+
+        applyPalette(saved || root.getAttribute('data-palette') || '1');
 
         trigger.addEventListener('click', function (event) {
+          var open;
           event.stopPropagation();
-          var open = options.classList.toggle('open');
+          open = options.classList.toggle('open');
           trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
         });
 
