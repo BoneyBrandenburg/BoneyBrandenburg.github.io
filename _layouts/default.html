@@ -18,12 +18,192 @@ layout: compress
 
     {{ content }}
 
+    <div class="palette-switcher" aria-label="Theme palette switcher">
+      <button id="palette-trigger" class="palette-trigger" type="button" aria-expanded="true" aria-controls="palette-options" aria-label="Toggle palette switcher">
+        Theme
+      </button>
+      <div id="palette-options" class="palette-options open" role="group" aria-label="Palette options">
+        <button class="palette-option" type="button" data-palette="1" data-label="Deep Navy" style="background:#64ffda" aria-label="Deep Navy"></button>
+        <button class="palette-option" type="button" data-palette="2" data-label="Tokyo Night" style="background:#7aa2f7" aria-label="Tokyo Night"></button>
+        <button class="palette-option" type="button" data-palette="3" data-label="Cyberpunk" style="background:#ff2d78" aria-label="Cyberpunk"></button>
+        <button class="palette-option" type="button" data-palette="4" data-label="Ivory" style="background:#2563eb" aria-label="Ivory"></button>
+        <button class="palette-option" type="button" data-palette="5" data-label="Amber" style="background:#f59e0b" aria-label="Amber"></button>
+      </div>
+    </div>
+
     <div class="page__footer">
       <footer>
         {% include footer/custom.html %}
         {% include footer.html %}
       </footer>
     </div>
+
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var trigger = document.getElementById('palette-trigger');
+        var options = document.getElementById('palette-options');
+        var buttons = Array.prototype.slice.call(document.querySelectorAll('.palette-option'));
+
+        if (!trigger || !options || !buttons.length) {
+          return;
+        }
+
+        /* ------------------------------------------------------------------
+           Palette 5 (Amber): Build a sticky editorial TOC in the sidebar
+           ------------------------------------------------------------------ */
+        var tocObserver = null;
+
+        function buildEditorialTOC() {
+          var sidebar = document.querySelector('.sidebar.sticky');
+          if (!sidebar) return;
+
+          // Remove any previously injected TOC
+          var old = sidebar.querySelector('.toc-editorial');
+          if (old) old.remove();
+          if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+
+          var headings = Array.prototype.slice.call(
+            document.querySelectorAll('.page__content h2, .page__content h3')
+          );
+          if (headings.length < 2) return;
+
+          // Ensure each heading has an id
+          headings.forEach(function (h, i) {
+            if (!h.id) h.id = 'toc-heading-' + i;
+          });
+
+          var nav = document.createElement('nav');
+          nav.className = 'toc-editorial';
+          nav.setAttribute('aria-label', 'Page contents');
+
+          var label = document.createElement('div');
+          label.className = 'toc-editorial__label';
+          label.textContent = 'Contents';
+          nav.appendChild(label);
+
+          var ul = document.createElement('ul');
+          var currentH2Li = null;
+
+          headings.forEach(function (h) {
+            var li = document.createElement('li');
+            var a = document.createElement('a');
+            a.href = '#' + h.id;
+            a.textContent = h.textContent;
+            a.setAttribute('data-toc-id', h.id);
+            li.appendChild(a);
+
+            if (h.tagName === 'H2') {
+              currentH2Li = li;
+              ul.appendChild(li);
+            } else if (h.tagName === 'H3') {
+              if (currentH2Li) {
+                var sub = currentH2Li.querySelector('ul');
+                if (!sub) {
+                  sub = document.createElement('ul');
+                  currentH2Li.appendChild(sub);
+                }
+                sub.appendChild(li);
+              } else {
+                ul.appendChild(li);
+              }
+            }
+          });
+
+          nav.appendChild(ul);
+          sidebar.appendChild(nav);
+
+          // Smooth-scroll on click
+          nav.addEventListener('click', function (e) {
+            var link = e.target.closest('a[data-toc-id]');
+            if (!link) return;
+            e.preventDefault();
+            var target = document.getElementById(link.getAttribute('data-toc-id'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          });
+
+          // Active-link tracking via IntersectionObserver
+          if ('IntersectionObserver' in window) {
+            tocObserver = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                var id = entry.target.id;
+                var link = nav.querySelector('a[data-toc-id="' + id + '"]');
+                if (!link) return;
+                if (entry.isIntersecting) {
+                  nav.querySelectorAll('a').forEach(function (a) {
+                    a.classList.remove('is-active');
+                  });
+                  link.classList.add('is-active');
+                }
+              });
+            }, { rootMargin: '-20% 0px -70% 0px' });
+
+            headings.forEach(function (h) { tocObserver.observe(h); });
+          }
+        }
+
+        function teardownEditorialTOC() {
+          var sidebar = document.querySelector('.sidebar.sticky');
+          if (sidebar) {
+            var old = sidebar.querySelector('.toc-editorial');
+            if (old) old.remove();
+          }
+          if (tocObserver) { tocObserver.disconnect(); tocObserver = null; }
+        }
+
+        /* ------------------------------------------------------------------
+           Core palette apply
+           ------------------------------------------------------------------ */
+        function applyPalette(palette) {
+          root.setAttribute('data-palette', palette);
+          try {
+            localStorage.setItem('site-palette', palette);
+          } catch (e) {}
+
+          buttons.forEach(function (button) {
+            var active = button.getAttribute('data-palette') === palette;
+            button.classList.toggle('active', active);
+          });
+
+          // Layout side-effects
+          if (palette === '5') {
+            buildEditorialTOC();
+          } else {
+            teardownEditorialTOC();
+          }
+        }
+
+        function closeOptions() {
+          options.classList.remove('open');
+          trigger.setAttribute('aria-expanded', 'false');
+        }
+
+        // Restore persisted palette (fallback to '1')
+        var saved = null;
+        try { saved = localStorage.getItem('site-palette'); } catch (e) {}
+        var initial = saved || root.getAttribute('data-palette') || '1';
+        applyPalette(initial);
+
+        trigger.addEventListener('click', function (event) {
+          event.stopPropagation();
+          var open = options.classList.toggle('open');
+          trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+
+        buttons.forEach(function (button) {
+          button.addEventListener('click', function () {
+            applyPalette(button.getAttribute('data-palette'));
+            closeOptions();
+          });
+        });
+
+        document.addEventListener('click', function (event) {
+          if (!options.contains(event.target) && event.target !== trigger) {
+            closeOptions();
+          }
+        });
+      })();
+    </script>
 
     {% include scripts.html %}
 
